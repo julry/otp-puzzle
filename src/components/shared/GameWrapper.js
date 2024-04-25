@@ -9,6 +9,7 @@ import { Header } from "./Header";
 import { useState } from "react";
 import { Rules } from "./Rules";
 import { CSSTransition, SwitchTransition } from "react-transition-group";
+import { PiecesWrapper } from "./PiecesWrapper";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -17,18 +18,6 @@ const Wrapper = styled.div`
     grid-template-columns: 100%;
     grid-template-rows: ${({$ratio}) => $ratio * 40}px auto ${({$ratio}) => $ratio * 290}px;
     padding: ${({$ratio}) => $ratio * 28}px 0 0;
-`;
-
-const PiecesWrapper = styled.div`
-    border: 6px solid #3E3644;
-    box-shadow: inset 0 0 0 1px #4A4250;
-    background: #453D4A;
-    height: 100%;
-    width: 100%;
-    border-radius: ${({$ratio}) => $ratio * 32}px ${({$ratio}) => $ratio * 32}px 0 0;
-    margin-bottom: -2px;
-    max-height: ${({$ratio}) => $ratio * 350}px;
-    align-self: flex-end;
 `;
 
 const ButtonsWrapper = styled.div`
@@ -103,7 +92,7 @@ const TransitionWrapper = styled.div`
     }
 `
 
-export const GameWrapper = ({level, children, piecesComponent, isFirstRules}) => {
+export const GameWrapper = ({level, children, piecesComponent, isFirstRules, onDrop, onRestart}) => {
     const [isFirstShown, setIsFirstShown] = useState(isFirstRules);
     const [isRules, setIsRules] = useState(isFirstRules);
     const ratio = useSizeRatio();
@@ -113,7 +102,6 @@ export const GameWrapper = ({level, children, piecesComponent, isFirstRules}) =>
 
         setIsRules(false);
     }
-
 
     const HTML5toTouch = {
         backends: [
@@ -140,12 +128,12 @@ export const GameWrapper = ({level, children, piecesComponent, isFirstRules}) =>
                             <Wrapper $ratio={ratio}>
                                 <Header level={level} />
                                 {children}
-                                <PiecesWrapper $ratio={ratio}> 
+                                <PiecesWrapper ratio={ratio} onDrop={onDrop}> 
                                     {piecesComponent}
                                 </PiecesWrapper>
                                 <ButtonsWrapper $ratio={ratio}>
                                     <ActionButtonsWrapper $ratio={ratio}>
-                                        <ActionButton $ratio={ratio}>
+                                        <ActionButton $ratio={ratio} onClick={onRestart}>
                                             <BtnImg src={reload} alt="" $ratio={ratio}/>
                                         </ActionButton>
                                         <ActionButton $ratio={ratio} onClick={() => setIsRules(true)}>

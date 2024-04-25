@@ -18,6 +18,7 @@ import { Block } from './Block';
 import { useRef } from 'react';
 import { Button } from './Button';
 import { Cell } from './Cell';
+import { PuzzleRow } from './PuzzleRow';
 
 const Wrapper = styled.div`
     position: absolute;
@@ -83,11 +84,7 @@ const Blocks = styled.div`
     padding: ${({$ratio}) => $ratio * 25}px ${({$ratio}) => $ratio * 20}px ${({$ratio}) => $ratio * 30}px;
 `;
 
-const Row = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+const Row = styled(PuzzleRow)`
     & + & {
         margin-top: ${({$ratio}) => $ratio * 22}px;
     }

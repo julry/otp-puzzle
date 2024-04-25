@@ -1,8 +1,9 @@
 import { useRef, useState } from "react";
 import styled from "styled-components";
-import caseStart from "../../../assets/images/caseStart.png";
-import { useSizeRatio } from "../../../contexts/SizeRatioContext";
+import plane from "../../../assets/images/planeStart.svg";
 import { useProgress } from "../../../contexts/ProgressContext";
+import { useSizeRatio } from "../../../contexts/SizeRatioContext";
+import { Button } from "../../shared/Button";
 import { GameWrapper } from "../../shared/GameWrapper";
 import { PuzzleField } from "../../shared/PuzzleField";
 import { initalPuzzles } from "./initialPuzzles";
@@ -13,24 +14,24 @@ const PictureWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({$ratio}) => $ratio * 375}px;
-    height: ${({$ratio}) => $ratio * 303}px;
+    width: ${({$ratio}) => $ratio * 345}px;
+    height: ${({$ratio}) => $ratio * 299}px;
     margin: 0 auto;
+    overflow: hidden;
 `;
 
 const Picture = styled.img`
-    position: relative;
     z-index: 2;
-    width: ${({$ratio}) => $ratio * 375}px;
-    height: ${({$ratio}) => $ratio * 303}px;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
 `;
 
-const ROWS = 5;
 const COLUMNS = 8;
-const cells = Array.from({length: ROWS * COLUMNS});
+const ROWS = 7;
+const cells = Array.from({length: COLUMNS * ROWS});
 
-export const Game1 = () => {
+export const Game2 = () => {
     const [emptyPuzzles, setEmptyPuzzles] = useState(initalPuzzles);
     const { next } = useProgress();
     
@@ -120,23 +121,23 @@ export const Game1 = () => {
 
     return (
         <GameWrapper
-            level={1} 
-            isFirstRules
+            level={2} 
             onDrop={handleReturn}
             onRestart={handleRestart}
-            piecesComponent={<PuzzlesWrapper puzzles={emptyPuzzles}/>}
+            // piecesComponent={<PuzzlesWrapper puzzles={emptyPuzzles}/>}
+            piecesComponent={<Button onClick={next}>Дальше</Button>}
         >
             <PictureWrapper $ratio={ratio}>
-                <Picture src={caseStart} alt={""} $ratio={ratio}/>
+                <Picture src={plane} alt={""} $ratio={ratio}/>
                 <PuzzleField 
                     cells={cells} 
-                    top={74} 
-                    width={325} 
-                    left={25}
+                    top={8} 
+                    width={320} 
+                    left={7} 
                     border={18} 
-                    height={204} 
-                    rows={ROWS} 
+                    height={281} 
                     columns={COLUMNS} 
+                    rows={ROWS}
                     onDrop={handleDrop}
                     shownPuzzles={puzzles.current.shownPuzzles}
                 />

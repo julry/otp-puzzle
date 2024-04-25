@@ -1,6 +1,7 @@
 {
   "name": "otp-puzzle",
   "version": "0.1.0",
+  "homepage": ".",
   "private": true,
   "dependencies": {
     "@gsap/react": "^2.1.0",

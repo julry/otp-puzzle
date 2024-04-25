@@ -1,9 +1,14 @@
 import styled from "styled-components";
+import { HTML5Backend } from 'react-dnd-html5-backend';
+import { TouchBackend } from 'react-dnd-touch-backend';
+import { MouseTransition, TouchTransition, DndProvider } from 'react-dnd-multi-backend';
 import reload from "../../assets/images/reload.svg";
 import question from "../../assets/images/question.svg";
-import { useProgress } from "../../contexts/ProgressContext";
-import { useSizeRatio } from "../../contexts/SizeRatioContext"
+import { useSizeRatio } from "../../contexts/SizeRatioContext";
 import { Header } from "./Header";
+import { useState } from "react";
+import { Rules } from "./Rules";
+import { CSSTransition, SwitchTransition } from "react-transition-group";
 
 const Wrapper = styled.div`
     width: 100%;
@@ -71,27 +76,88 @@ const BtnImg = styled.img`
     object-fit: contain;
 `;
 
-export const GameWrapper = ({level, children, piecesComponent}) => {
-    const {next} = useProgress();
+const SWITCH_DURATION = 500;
+
+const SWITCH_NAME = 'switch';
+
+const TransitionWrapper = styled.div`
+    width: 100%;
+    height: 100%;
+
+    &.${SWITCH_NAME}-enter {
+        opacity: 0;
+    }
+
+    &.${SWITCH_NAME}-enter-active {
+        opacity: 1;
+        transition: opacity ${SWITCH_DURATION}ms;
+    }
+
+    &.${SWITCH_NAME}-exit {
+        opacity: 1;
+    }
+
+    &.${SWITCH_NAME}-exit-active {
+        opacity: 0;
+        transition: opacity ${SWITCH_DURATION}ms;
+    }
+`
+
+export const GameWrapper = ({level, children, piecesComponent, isFirstRules}) => {
+    const [isFirstShown, setIsFirstShown] = useState(isFirstRules);
+    const [isRules, setIsRules] = useState(isFirstRules);
     const ratio = useSizeRatio();
 
+    const handleCloseRules = () => {
+        if (isFirstShown) setIsFirstShown(false);
+
+        setIsRules(false);
+    }
+
+
+    const HTML5toTouch = {
+        backends: [
+            {
+                id: 'html5',
+                backend: HTML5Backend,
+                transition: MouseTransition,
+            },
+            {
+                id: 'touch',
+                backend: TouchBackend,
+                preview: true,
+                transition: TouchTransition,
+            },
+        ],
+    };
+
     return (
-        <Wrapper $ratio={ratio}>
-            <Header level={level} />
-            {children}
-            <PiecesWrapper $ratio={ratio}> 
-                {piecesComponent}
-            </PiecesWrapper>
-            <ButtonsWrapper $ratio={ratio}>
-                <ActionButtonsWrapper $ratio={ratio}>
-                    <ActionButton $ratio={ratio}>
-                        <BtnImg src={reload} alt="" $ratio={ratio}/>
-                    </ActionButton>
-                    <ActionButton $ratio={ratio}>
-                        <BtnImg src={question} alt="" $ratio={ratio}/>
-                    </ActionButton>
-                </ActionButtonsWrapper>
-            </ButtonsWrapper>
-        </Wrapper>
+        <SwitchTransition mode='out-in'>
+             <CSSTransition key={`transition_${isRules}`} timeout={SWITCH_DURATION} classNames={SWITCH_NAME}>
+                <TransitionWrapper>
+                    {isRules ? <Rules onClose={handleCloseRules} isFirstRules={isFirstShown}/> : (
+                        <DndProvider options={HTML5toTouch}>
+                            <Wrapper $ratio={ratio}>
+                                <Header level={level} />
+                                {children}
+                                <PiecesWrapper $ratio={ratio}> 
+                                    {piecesComponent}
+                                </PiecesWrapper>
+                                <ButtonsWrapper $ratio={ratio}>
+                                    <ActionButtonsWrapper $ratio={ratio}>
+                                        <ActionButton $ratio={ratio}>
+                                            <BtnImg src={reload} alt="" $ratio={ratio}/>
+                                        </ActionButton>
+                                        <ActionButton $ratio={ratio} onClick={() => setIsRules(true)}>
+                                            <BtnImg src={question} alt="" $ratio={ratio}/>
+                                        </ActionButton>
+                                    </ActionButtonsWrapper>
+                                </ButtonsWrapper>
+                            </Wrapper>    
+                        </DndProvider>
+                    )}
+                </TransitionWrapper>
+            </CSSTransition>
+        </SwitchTransition>
     )
 }

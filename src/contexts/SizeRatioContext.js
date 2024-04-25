@@ -15,11 +15,11 @@ export function SizeRatioContextProvider(props) {
         const width = target?.current?.clientWidth
         const height = target?.current?.clientHeight
         setSizeRatio(getSizeRatio(width, height, targetWidth, targetHeight))
-    }, [target])
+    }, [target, targetHeight, targetWidth])
 
     useLayoutEffect(() => {
         calculateSizeRatio()
-    }, [])
+    }, [calculateSizeRatio])
 
     useResizeObserver({ onResize: calculateSizeRatio, ref: target })
 

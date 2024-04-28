@@ -21,10 +21,7 @@ const TextWrapper = styled.div`
     white-space: pre-line;
     position: relative;
     z-index: 3;
-    
-    & p {
-        max-width: ${({$ratio}) => $ratio * 310}px;
-    }
+    padding: 0 ${({$ratio}) => $ratio * 50}px;
 `;
 
 const ButtonWrapper = styled.div`

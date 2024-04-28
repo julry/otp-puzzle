@@ -1,18 +1,36 @@
-import puzzle1_2 from '../../../assets/images/game3/puzzle1.svg';
-import puzzle2_2 from '../../../assets/images/game3/puzzle2.svg';
-import puzzle3_2 from '../../../assets/images/game3/puzzle3.svg';
-import puzzle4_2 from '../../../assets/images/game3/puzzle4.svg';
-import puzzle5_2 from '../../../assets/images/game3/puzzle5.svg';
-import puzzle6_2 from '../../../assets/images/game3/puzzle6.svg';
-import puzzle7_2 from '../../../assets/images/game3/puzzle7.svg';
-import puzzle8_2 from '../../../assets/images/game3/puzzle8.svg';
-import puzzle9_2 from '../../../assets/images/game3/puzzle9.svg';
-import puzzle10_2 from '../../../assets/images/game3/puzzle10.svg';
-import puzzle11_2 from '../../../assets/images/game3/puzzle11.svg';
-import puzzle12_2 from '../../../assets/images/game3/puzzle12.svg';
-import puzzle13_2 from '../../../assets/images/game3/puzzle13.svg';
-import puzzle14_2 from '../../../assets/images/game3/puzzle14.svg';
-import puzzle15_2 from '../../../assets/images/game3/puzzle15.svg';
+// import puzzle1_3 from '../../../assets/images/game3/puzzle3_1.png';
+// import puzzle2_3 from '../../../assets/images/game3/puzzle3_2.png';
+// import puzzle3_3 from '../../../assets/images/game3/puzzle3_3.png';
+// import puzzle4_3 from '../../../assets/images/game3/puzzle3_4.png';
+// import puzzle5_3 from '../../../assets/images/game3/puzzle3_5.png';
+// import puzzle6_3 from '../../../assets/images/game3/puzzle3_6.png';
+// import puzzle7_3 from '../../../assets/images/game3/puzzle3_7.png';
+// import puzzle8_3 from '../../../assets/images/game3/puzzle3_8.png';
+// import puzzle9_3 from '../../../assets/images/game3/puzzle3_9.png';
+// import puzzle10_3 from '../../../assets/images/game3/puzzle3_10.png';
+// import puzzle11_3 from '../../../assets/images/game3/puzzle3_11.png';
+// import puzzle12_3 from '../../../assets/images/game3/puzzle3_12.png';
+// import puzzle13_3 from '../../../assets/images/game3/puzzle3_13.png';
+// import puzzle14_3 from '../../../assets/images/game3/puzzle3_14.png';
+// import puzzle15_3 from '../../../assets/images/game3/puzzle3_15.png';
+// import puzzle16_3 from '../../../assets/images/game3/puzzle3_16.png';
+
+// import puzzle1_3_start from '../../../assets/images/game3/puzzle3_1_start.png';
+// import puzzle2_3_start from '../../../assets/images/game3/puzzle3_2_start.png';
+// import puzzle3_3_start from '../../../assets/images/game3/puzzle3_3_start.png';
+// import puzzle4_3_start from '../../../assets/images/game3/puzzle3_4_start.png';
+// import puzzle5_3_start from '../../../assets/images/game3/puzzle3_5_start.png';
+// import puzzle6_3_start from '../../../assets/images/game3/puzzle3_6_start.png';
+// import puzzle7_3_start from '../../../assets/images/game3/puzzle3_7_start.png';
+// import puzzle8_3_start from '../../../assets/images/game3/puzzle3_8_start.png';
+// import puzzle9_3_start from '../../../assets/images/game3/puzzle3_9_start.png';
+// import puzzle10_3_start from '../../../assets/images/game3/puzzle3_10_start.png';
+// import puzzle11_3_start from '../../../assets/images/game3/puzzle3_11_start.png';
+// import puzzle12_3_start from '../../../assets/images/game3/puzzle3_12_start.png';
+// import puzzle13_3_start from '../../../assets/images/game3/puzzle3_13_start.png';
+// import puzzle14_3_start from '../../../assets/images/game3/puzzle3_14_start.png';
+// import puzzle15_3_start from '../../../assets/images/game3/puzzle3_15_start.png';
+// import puzzle16_3_start from '../../../assets/images/game3/puzzle3_16_start.png';
 
 export const initalPuzzles = [
     {
@@ -21,7 +39,6 @@ export const initalPuzzles = [
         sizeY: 1,
         correctX: [0],
         correctY: [3],
-        src: puzzle1_2,
         line: 1,
     },
     {
@@ -30,7 +47,6 @@ export const initalPuzzles = [
         sizeY: 1,
         correctX: [2],
         correctY: [3],
-        src: puzzle2_2,
         line: 1,
     },
     {
@@ -39,7 +55,6 @@ export const initalPuzzles = [
         sizeY: 1,
         correctX: [6],
         correctY: [3],
-        src: puzzle3_2,
         line: 1,
     },
     {
@@ -48,7 +63,6 @@ export const initalPuzzles = [
         sizeY: 1,
         correctX: [4],
         correctY: [0],
-        src: puzzle4_2,
         puzzWidth: 34,
         puzzHeight: 34,
         line: 1,
@@ -59,7 +73,6 @@ export const initalPuzzles = [
         sizeY: 1,
         correctX: [4],
         correctY: [6],
-        src: puzzle5_2,
         puzzWidth: 34,
         puzzHeight: 34,
         line: 1,
@@ -70,7 +83,6 @@ export const initalPuzzles = [
         sizeY: 5,
         correctX: [0],
         correctY: [1],
-        src: puzzle6_2,
         isDifficult: true,
         puzzWidth: 41,
         puzzHeight: 98,
@@ -82,7 +94,6 @@ export const initalPuzzles = [
         sizeY: 2,
         correctX: [4],
         correctY: [2],
-        src: puzzle7_2,
         line: 2,
     },
     {
@@ -91,7 +102,6 @@ export const initalPuzzles = [
         sizeY: 2,
         correctX: [4],
         correctY: [4],
-        src: puzzle8_2,
         line: 2,
     },
     {
@@ -100,7 +110,6 @@ export const initalPuzzles = [
         sizeY: 2,
         correctX: [4],
         correctY: [1],
-        src: puzzle9_2,
         line: 2,
         puzzWidth: 48,
         puzzHeight: 34,

@@ -44,20 +44,37 @@ const PuzzleStyled = styled(Puzzle)`
 export const PuzzleField = ({top, left, width, height, border, cells, onDrop, columns, rows, shownPuzzles}) => {
     const ratio = useSizeRatio();
     const $wrapper = useRef();
+    const cellSizeX = useMemo(() => (width - 2 * ratio * columns)/ columns, [width, columns, ratio]);
     const cellSize = useMemo(() => width / columns, [width, columns]);
+    const cellSizeY = useMemo(() => (height - 2 * ratio * rows) / rows, [height, rows, ratio]);
 
     const handleDrop = (item, monitor) => {
         if (!$wrapper.current) return;
+
+        let isSligtlyUp = false;
+        let isSligtlyRight = false;
+        let isMoreUp = false;
+
         const y = monitor.getSourceClientOffset().y - $wrapper.current?.getBoundingClientRect().y;
         const x = monitor.getSourceClientOffset().x - $wrapper.current?.getBoundingClientRect().x;
-        let dropX = Math.floor(x / puzzleSize);
-        let dropY = Math.floor(y / puzzleSize);
+        const difX = x / cellSizeX;
+        const difY = y / cellSizeY;
+
+        let dropX = Math.floor(difX);
+        let dropY = Math.floor(difY);
+
+        const difDropX = difX - dropX;
+        const difDropY = difX - dropY;
+
+        if (difDropY > 0.55) isSligtlyUp = true;
+        if (difDropX > 0.55) isSligtlyRight = true;
+        if (difDropY > difDropX) isMoreUp = true;
 
         //понять как получить х и у на компе 
         if (dropX < 0) dropX = 0;
         if (dropY < 0) dropY = 0;
 
-        onDrop?.(item, dropX, dropY);
+        onDrop?.(item, dropX, dropY, {isSligtlyRight, isSligtlyUp, isMoreUp});
     };
 
     const [, drop] = useDrop(() => (

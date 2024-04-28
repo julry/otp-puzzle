@@ -5,8 +5,9 @@ import { useSizeRatio } from "../../../contexts/SizeRatioContext";
 import { useProgress } from "../../../contexts/ProgressContext";
 import { GameWrapper } from "../../shared/GameWrapper";
 import { PuzzleField } from "../../shared/PuzzleField";
-import { initalPuzzles } from "./initialPuzzles";
+import { initialPuzzles } from "./initialPuzzles";
 import { PuzzlesWrapper } from "./PuzzlesWrapper";
+import { findPlacedCells } from "../../../utils/findPlacedCells";
 
 const PictureWrapper = styled.div`
     position: relative;
@@ -31,7 +32,7 @@ const COLUMNS = 8;
 const cells = Array.from({length: ROWS * COLUMNS});
 
 export const Game1 = () => {
-    const [emptyPuzzles, setEmptyPuzzles] = useState(initalPuzzles);
+    const [emptyPuzzles, setEmptyPuzzles] = useState(initialPuzzles);
     const { next } = useProgress();
     
     const puzzles = useRef({
@@ -41,32 +42,47 @@ export const Game1 = () => {
 
     const ratio = useSizeRatio();
 
-    const handleDrop = (puzzle, x, y) => {
+    const handleDrop = (puzzle, x, y, {isSligtlyRight, isSligtlyUp, isMoreUp}) => {
         let dropX = x;
         let dropY = y;
-        let isEmpty = true;
-        const placed = [];
+        let placedPuzzles = [];
 
         if (x + puzzle.sizeX > COLUMNS) dropX = COLUMNS - puzzle.sizeX;
         if (y + puzzle.sizeY > ROWS) dropY = ROWS - puzzle.sizeY;
         
-        const newPuz = {...puzzle, top: dropY, left: dropX};
+        const {isEmpty, placed} = findPlacedCells(dropX, dropY, puzzle, puzzles.current.placedCells);
 
-        for (let i = dropX; i < dropX + puzzle.sizeX; i++) {
-            for (let j = dropY; j < dropY + puzzle.sizeY; j++) {
-                if (puzzles.current.placedCells.find(({y, x, id}) => x === i && y === j && id !== puzzle.id)) {
-                    isEmpty = false;
-
-                    break;
-                }
-    
-                placed.push({x: i, y: j, id: puzzle.id});
-            }
+        if (isEmpty) {
+            placedPuzzles = [...placed];
         }
 
-        if (!isEmpty) return;
+        if (!isEmpty && (isSligtlyRight || isSligtlyUp)) {
+            let isSomeEmpty = false;
+            if (isMoreUp && isSligtlyUp && dropY + 1 <= ROWS - puzzle.sizeY) {
+                const {isEmpty: isEmptyDown, placed: placedDown} = 
+                    findPlacedCells(dropX, dropY + 1, puzzle, puzzles.current.placedCells);
+
+                isSomeEmpty = isEmptyDown;
+                placedPuzzles = [...placedDown];
+                if (isSomeEmpty) dropY = dropY + 1;
+            } 
+
+            if ((!isSomeEmpty || !isSligtlyUp) && dropX + 1 <= COLUMNS - puzzle.sizeX) {
+                const {isEmpty: isEmptyRight, placed: placedRight} = 
+                    findPlacedCells(dropX + 1, dropY, puzzle, puzzles.current.placedCells);
+                isSomeEmpty = isEmptyRight;
+                placedPuzzles = [...placedRight];
+                dropX = dropX + 1;
+            }
+
+            if (!isSomeEmpty) return;
+        }
+
+        if (puzzle.isOnlyPosition && (!puzzle.correctX?.includes(dropX) || !puzzle.correctY?.includes(dropY))) return;
 
         const shownIndex = puzzles.current.shownPuzzles.findIndex(({id}) => id === puzzle.id);
+
+        const newPuz = {...puzzle, top: dropY, left: dropX};
 
         if (shownIndex !== -1) {
             puzzles.current.shownPuzzles[shownIndex] = newPuz;
@@ -81,11 +97,11 @@ export const Game1 = () => {
             if (emptyIndex === -1) return prev;
 
             const newEmpty = [...prev];
-            newEmpty[emptyIndex] = {...newEmpty[emptyIndex], src: undefined};
+            newEmpty[emptyIndex] = {...newEmpty[emptyIndex], srcStart: undefined};
             return newEmpty;
         })
 
-        puzzles.current.placedCells.push(...placed);
+        puzzles.current.placedCells.push(...placedPuzzles);
 
        if (puzzles.current.placedCells.length === ROWS * COLUMNS) {
             const correctLength = puzzles.current.shownPuzzles.filter(({top, left, correctX, correctY }) => 
@@ -116,12 +132,13 @@ export const Game1 = () => {
             shownPuzzles: [],
             placedCells: [],
         }
+        setEmptyPuzzles(initialPuzzles);
     }
 
     return (
         <GameWrapper
             level={1} 
-            isFirstRules
+            // isFirstRules
             onDrop={handleReturn}
             onRestart={handleRestart}
             piecesComponent={<PuzzlesWrapper puzzles={emptyPuzzles}/>}

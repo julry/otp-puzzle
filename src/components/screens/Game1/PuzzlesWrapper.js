@@ -11,6 +11,10 @@ const Row = styled(PuzzleRow)`
     margin-top: ${({$ratio}) => 12 * $ratio}px;
 `;
 
+const PuzzleStyled = styled(Puzzle)`
+    z-index: 0;
+`;
+
 export const PuzzlesWrapper = ({puzzles}) => {
     const ratio = useSizeRatio();
     const puzzlesRow1 = puzzles.filter(({line}) => line === 1);
@@ -20,13 +24,13 @@ export const PuzzlesWrapper = ({puzzles}) => {
     return (
         <Wrapper $ratio={ratio}>
             <PuzzleRow $ratio={ratio}>
-                {puzzlesRow1.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} />)}
+                {puzzlesRow1.map((puzzle) => <PuzzleStyled key={puzzle.id} puzzle={puzzle} isStartPuzzle/>)}
             </PuzzleRow> 
             <Row $ratio={ratio}>
-                {puzzlesRow2.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} />)}
+                {puzzlesRow2.map((puzzle) => <PuzzleStyled key={puzzle.id} puzzle={puzzle} isStartPuzzle/>)}
             </Row> 
             <Row $ratio={ratio}>
-                {puzzlesRow3.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} />)}
+                {puzzlesRow3.map((puzzle) => <PuzzleStyled key={puzzle.id} puzzle={puzzle} isStartPuzzle/>)}
             </Row>
         </Wrapper>
     )

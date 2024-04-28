@@ -60,6 +60,10 @@ const BlockStyled = styled(Block)`
     & p {
         max-width: ${({$ratio}) => $ratio * 282}px;
     }
+
+    @media screen and (max-height: 750px) {
+        padding-bottom: ${({$ratio}) => $ratio * 20}px;
+    }
 `;
 
 const Logo = styled.img`

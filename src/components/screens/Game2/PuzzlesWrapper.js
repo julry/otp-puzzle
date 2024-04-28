@@ -9,6 +9,10 @@ const Wrapper = styled.div`
 
 const Row = styled(PuzzleRow)`
     margin-top: ${({$ratio}) => 40 * $ratio}px;
+
+    & div {
+        flex-shrink: 0;
+    }
 `;
 
 export const PuzzlesWrapper = ({puzzles}) => {
@@ -19,10 +23,10 @@ export const PuzzlesWrapper = ({puzzles}) => {
     return (
         <Wrapper $ratio={ratio}>
             <PuzzleRow $ratio={ratio}>
-                {puzzlesRow1.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} />)}
+                {puzzlesRow1.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} isStartPuzzle/>)}
             </PuzzleRow> 
             <Row $ratio={ratio}>
-                {puzzlesRow2.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} />)}
+                {puzzlesRow2.map((puzzle) => <Puzzle key={puzzle.id} puzzle={puzzle} isStartPuzzle/>)}
             </Row> 
         </Wrapper>
     )

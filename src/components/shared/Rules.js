@@ -4,14 +4,14 @@ import { useGSAP } from "@gsap/react";
 import { useSizeRatio } from '../../contexts/SizeRatioContext';
 import info from '../../assets/images/info.svg';
 import field from '../../assets/images/caseStart.png';
-import puzzle1_1 from '../../assets/images/game1/puzzle1.svg';
-import puzzle2_1 from '../../assets/images/game1/puzzle2.svg';
-import puzzle3_1 from '../../assets/images/game1/puzzle3.svg';
-import puzzle4_1 from '../../assets/images/game1/puzzle4.svg';
-import puzzle5_1 from '../../assets/images/game1/puzzle5.svg';
-import puzzle6_1 from '../../assets/images/game1/puzzle6.svg';
-import puzzle7_1 from '../../assets/images/game1/puzzle7.svg';
-import puzzle8_1 from '../../assets/images/game1/puzzle8.svg';
+import puzzle1_1 from '../../assets/images/game1/puzzle1_1_start.png';
+import puzzle2_1 from '../../assets/images/game1/puzzle1_2_start.png';
+import puzzle3_1 from '../../assets/images/game1/puzzle1_3_start.png';
+import puzzle4_1 from '../../assets/images/game1/puzzle1_4_start.png';
+import puzzle5_1 from '../../assets/images/game1/puzzle1_5_start.png';
+import puzzle6_1 from '../../assets/images/game1/puzzle1_6_start.png';
+import puzzle7_1 from '../../assets/images/game1/puzzle1_7_start.png';
+import puzzle8_1 from '../../assets/images/game1/puzzle1_8_start.png';
 import helpHand from '../../assets/images/helpHand.png';
 
 import { Block } from './Block';
@@ -72,7 +72,7 @@ export const FieldRectangles = styled.div`
 `;
 
 const CellStyled = styled(Cell)`
-    animation-delay: 1.3s;
+    /* animation-delay: 1.3s; */
 
     &:nth-child(8), &:nth-child(16), &:nth-child(24), &:nth-child(32), &:nth-child(40) {
         border-right: none;
@@ -133,14 +133,37 @@ export const Rules = ({onClose, isFirstRules}) => {
             y,
             x,
             delay: 0.5,
-            duration: 1.4
+            duration: 1.4,
+            repeat: -1,
+            repeatDelay: 1.8,
         }); 
+
+        // gsap.to(".colored", {
+        //     background: 'red',
+        //     delay: 0.7,
+        //     duration: 0.3,
+        //     repeat: -1,
+        //     repeatDelay: 1.5,
+        //     repeatRefresh: true,
+        // }); 
+
+        // gsap.to(".colored", {
+        //     background: 'yellow',
+        //     delay: 1,
+        //     duration: 1.5,
+        //     repeat: -1,
+        //     repeatDelay: 2.5,
+        //     repeatRefresh: true,
+        // }); 
 
         gsap.to("#puzzle", {
             width: size * 6,
             height: size * 2,
-            delay: 1.5,
-        });
+            delay: 0.5,
+            duration: 1.4,
+            repeat: -1,
+            repeatDelay: 1.8,
+        }); 
     }, {}); 
 
 
@@ -156,7 +179,7 @@ export const Rules = ({onClose, isFirstRules}) => {
                 <Field $ratio={ratio}>
                     <FieldRectangles $ratio={ratio} ref={block}>
                         {cells.map((_, index) => (
-                            <CellStyled key={index} $isColored={coloredCells.includes(index)}/>
+                            <CellStyled key={index} className={coloredCells.includes(index) ? "colored" : undefined}/>
                         ))}
                     </FieldRectangles>
                 </Field>

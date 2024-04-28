@@ -19,14 +19,19 @@ const PuzzleStyled = styled(PuzzleWrapper)`
     z-index: 111;
 `;
 
-export const Puzzle = ({ className, puzzle, size}) => {
+export const Puzzle = ({ className, puzzle, size, isStartPuzzle}) => {
     const ratio = useSizeRatio();
     const $puzzle = useRef();
 
-    const { puzzWidth, puzzHeight } = puzzle;
+    const img = isStartPuzzle ? puzzle.srcStart : puzzle.src;
+
+    const { puzzWidth, puzzHeight, puzzRealWidth, puzzRealHeight } = puzzle;
 
     const width = useMemo(() => puzzWidth ?? (size ? puzzle.sizeX * size : puzzle.sizeX * puzzleSize), [size]);
     const height = useMemo(() => puzzHeight ?? (size ? puzzle.sizeY * size : puzzle.sizeY * puzzleSize + 4), [size]);
+
+    const shownWidth = isStartPuzzle ? width : puzzRealWidth ?? width;
+    const shownHeight = isStartPuzzle ? height : puzzRealHeight ?? height;
 
     const [{ isDragging }, drag] = useDrag(() => ({
         type: "PUZZLE",
@@ -48,7 +53,7 @@ export const Puzzle = ({ className, puzzle, size}) => {
                 <PuzzleWrapper 
                     $ratio={ratio}  
                     width={puzzWidth ?? puzzle.sizeX * puzzleSize} 
-                    height={puzzHeight ??puzzle.sizeY * puzzleSize} 
+                    height={puzzHeight ?? puzzle.sizeY * puzzleSize} 
                 />
             );
         }
@@ -58,8 +63,8 @@ export const Puzzle = ({ className, puzzle, size}) => {
                 <PuzzleStyled 
                     style={style} 
                     $ratio={ratio}  
-                    width={puzzWidth ? puzzWidth * puzzleRealSize / puzzleSize : puzzle.sizeX * puzzleRealSize} 
-                    height={puzzHeight ? puzzHeight * puzzleRealSize / puzzleSize : puzzle.sizeY * puzzleRealSize} 
+                    width={puzzRealWidth ?? puzzle.sizeX * puzzleRealSize} 
+                    height={puzzRealHeight ?? puzzle.sizeY * puzzleRealSize} 
                     src={puzzle.src}
                 />
                 <PuzzleWrapper 
@@ -78,9 +83,9 @@ export const Puzzle = ({ className, puzzle, size}) => {
             ref={mergeRefs($puzzle, drag)} 
             className={className}
             $ratio={ratio}  
-            width={width} 
-            height={height} 
-            src={puzzle.src} 
+            width={shownWidth} 
+            height={shownHeight} 
+            src={img} 
         />
     )
 }

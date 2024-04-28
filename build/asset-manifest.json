@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "./static/css/main.067c6e35.css",
-    "main.js": "./static/js/main.3739a3b8.js",
+    "main.js": "./static/js/main.8383cfb1.js",
     "static/media/Montserrat-Bold.ttf": "./static/media/Montserrat-Bold.50f0257aa1e905f4bfaf.ttf",
     "static/media/Montserrat-Medium.ttf": "./static/media/Montserrat-Medium.b8c6753baa964ccac1ba.ttf",
     "static/media/startPic.png": "./static/media/startPic.41cf2858fba8de13c0f8.png",
@@ -11,35 +11,24 @@
     "static/media/plane.png": "./static/media/plane.6a3018566e577a731d0b.png",
     "static/media/caseStart.png": "./static/media/caseStart.ea54ee7d0bf3144be9cf.png",
     "static/media/glasses.png": "./static/media/glasses.a6b46915050d45277ca8.png",
-    "static/media/puzzle8.svg": "./static/media/puzzle8.88b424e15f555da163bc7250db92e20d.svg",
+    "static/media/puzzle2_8.png": "./static/media/puzzle2_8.309dc4ff126472ba1f09.png",
+    "static/media/puzzle2_7.png": "./static/media/puzzle2_7.15c829f3007ca5159b72.png",
     "static/media/helpHand.png": "./static/media/helpHand.4490d62bc8867bfcb791.png",
-    "static/media/puzzle7.svg": "./static/media/puzzle7.b376dc5501d264dc16d8bb1880199394.svg",
-    "static/media/puzzle12.svg": "./static/media/puzzle12.e62b8700c69f23bee47806636d347d45.svg",
-    "static/media/puzzle2.svg": "./static/media/puzzle2.a72f7c3ef97192edf234a8da42574bcb.svg",
-    "static/media/puzzle1.svg": "./static/media/puzzle1.06c7e2b0c0641a81e488c490193cba78.svg",
-    "static/media/puzzle6.svg": "./static/media/puzzle6.9c7692ad0877bfe12edd07ef0cadfdcf.svg",
-    "static/media/puzzle9.svg": "./static/media/puzzle9.782bc696d80bcf0bbd58e1b2ac3e4b88.svg",
-    "static/media/puzzle10.svg": "./static/media/puzzle10.1598410a02bb89e722061f0d8c90354f.svg",
-    "static/media/puzzle4.svg": "./static/media/puzzle4.68384c4ce581a20cd8b50f1ead5ac761.svg",
+    "static/media/puzzle2_8_start.png": "./static/media/puzzle2_8_start.b987ed86482a494f5706.png",
+    "static/media/puzzle1_8.png": "./static/media/puzzle1_8.602d6d160811dd0967c2.png",
     "static/media/logo.svg": "./static/media/logo.fb05af3a7279d7ff1ef8bca670964853.svg",
-    "static/media/puzzle14.svg": "./static/media/puzzle14.20cf304963ebf4c6051bad3f61c8b77c.svg",
-    "static/media/puzzle5.svg": "./static/media/puzzle5.bde5397d4709a94293841748f9bfe301.svg",
-    "static/media/puzzle13.svg": "./static/media/puzzle13.976a318038131efd92f1cbb4454711eb.svg",
     "static/media/planeStart.svg": "./static/media/planeStart.accda5826ba8ee002f0365a580a9b690.svg",
-    "static/media/puzzle3.svg": "./static/media/puzzle3.b23f2ace5c781883c36310f870d13fb3.svg",
     "static/media/photoStart.svg": "./static/media/photoStart.4a57a610c220af4a8e27baab6076b12d.svg",
-    "static/media/puzzle15.svg": "./static/media/puzzle15.eed921211a8fac19b2f7fdbcb114bd63.svg",
     "static/media/caseStart.svg": "./static/media/caseStart.d4bd2ad0a4668561adbee586e066d02a.svg",
-    "static/media/puzzle11.svg": "./static/media/puzzle11.f64d991b8b18104f9e15bc788ab4d22c.svg",
     "static/media/question.svg": "./static/media/question.f933e41dfdc36fe9598bbee7bae29336.svg",
     "static/media/reload.svg": "./static/media/reload.b485cde33ac2ba4484bc3aa64d13edfb.svg",
     "index.html": "./index.html",
     "static/media/info.svg": "./static/media/info.0f42284ab8dd3c828831af05b4c89520.svg",
     "main.067c6e35.css.map": "./static/css/main.067c6e35.css.map",
-    "main.3739a3b8.js.map": "./static/js/main.3739a3b8.js.map"
+    "main.8383cfb1.js.map": "./static/js/main.8383cfb1.js.map"
   },
   "entrypoints": [
     "static/css/main.067c6e35.css",
-    "static/js/main.3739a3b8.js"
+    "static/js/main.8383cfb1.js"
   ]
 }

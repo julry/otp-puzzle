@@ -50,6 +50,8 @@ export const Game3 = () => {
         if (x + puzzle.sizeX > COLUMNS) dropX = COLUMNS - puzzle.sizeX;
         if (y + puzzle.sizeY > ROWS) dropY = ROWS - puzzle.sizeY;
         
+        if (dropX === 2 && dropY === 0 && puzzle.id !== 2) return;
+
         const {isEmpty, placed} = findPlacedCells(dropX, dropY, puzzle, puzzles.current.placedCells);
 
         if (isEmpty) {

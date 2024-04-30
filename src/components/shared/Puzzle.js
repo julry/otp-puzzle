@@ -19,7 +19,7 @@ const PuzzleStyled = styled(PuzzleWrapper)`
     z-index: 111;
 `;
 
-export const Puzzle = ({ className, puzzle, size, isStartPuzzle}) => {
+export const Puzzle = ({ className, puzzle, size, sizeH, isStartPuzzle}) => {
     const ratio = useSizeRatio();
     const $puzzle = useRef();
 
@@ -27,8 +27,8 @@ export const Puzzle = ({ className, puzzle, size, isStartPuzzle}) => {
 
     const { puzzWidth, puzzHeight, puzzRealWidth, puzzRealHeight } = puzzle;
 
-    const width = useMemo(() => puzzWidth ?? (size ? puzzle.sizeX * size : puzzle.sizeX * puzzleSize), [size]);
-    const height = useMemo(() => puzzHeight ?? (size ? puzzle.sizeY * size : puzzle.sizeY * puzzleSize + 4), [size]);
+    const width = useMemo(() => puzzWidth ?? (size ? puzzle.sizeX * size : puzzle.sizeX * puzzleSize), [size, puzzWidth, puzzle.sizeX]);
+    const height = useMemo(() => puzzHeight ?? (sizeH ? puzzle.sizeY * sizeH : puzzle.sizeY * puzzleSize + 4), [sizeH, puzzHeight, puzzle.sizeY]);
 
     const shownWidth = isStartPuzzle ? width : puzzRealWidth ?? width;
     const shownHeight = isStartPuzzle ? height : puzzRealHeight ?? height;

@@ -72,8 +72,6 @@ export const FieldRectangles = styled.div`
 `;
 
 const CellStyled = styled(Cell)`
-    /* animation-delay: 1.3s; */
-
     &:nth-child(8), &:nth-child(16), &:nth-child(24), &:nth-child(32), &:nth-child(40) {
         border-right: none;
     }
@@ -128,42 +126,30 @@ export const Rules = ({onClose, isFirstRules}) => {
         const size = block?.current.getBoundingClientRect().width / 8;
         const y = block?.current.getBoundingClientRect().y - element?.current.getBoundingClientRect().y + 2 * ratio;
         const x = block?.current.getBoundingClientRect().x - element?.current.getBoundingClientRect().x + 2 * size;
+        const tl = gsap.timeline({repeat: -1, repeatDelay: 1.8});
+        const tl1 = gsap.timeline({repeat: -1, repeatDelay: 1.8});
+        const tl2 = gsap.timeline({repeat: -1, repeatDelay: 1.8});
 
-        gsap.to(".box", {
+        // tl1.to(".colored", {
+        //     background: '#EBF4D1',
+        //     delay: 0.7,
+        //     duration: 1.2,
+        // }); 
+
+        tl.to(".box", {
             y,
             x,
             delay: 0.5,
             duration: 1.4,
-            repeat: -1,
-            repeatDelay: 1.8,
         }); 
 
-        // gsap.to(".colored", {
-        //     background: 'red',
-        //     delay: 0.7,
-        //     duration: 0.3,
-        //     repeat: -1,
-        //     repeatDelay: 1.5,
-        //     repeatRefresh: true,
-        // }); 
-
-        // gsap.to(".colored", {
-        //     background: 'yellow',
-        //     delay: 1,
-        //     duration: 1.5,
-        //     repeat: -1,
-        //     repeatDelay: 2.5,
-        //     repeatRefresh: true,
-        // }); 
-
-        gsap.to("#puzzle", {
+        tl2.to("#puzzle", {
             width: size * 6,
             height: size * 2,
             delay: 0.5,
             duration: 1.4,
-            repeat: -1,
-            repeatDelay: 1.8,
         }); 
+        
     }, {}); 
 
 

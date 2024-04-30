@@ -153,7 +153,6 @@ export const Game2 = () => {
             onDrop={handleReturn}
             onRestart={handleRestart}
             piecesComponent={<PuzzlesWrapper puzzles={emptyPuzzles}/>}
-            // piecesComponent={<Button onClick={next}>Дальше</Button>}
         >
             <PictureWrapper $ratio={ratio}>
                 <Picture src={plane} alt={""} $ratio={ratio}/>

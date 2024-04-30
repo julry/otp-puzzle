@@ -56,26 +56,29 @@ export const Game1 = () => {
             placedPuzzles = [...placed];
         }
 
-        if (!isEmpty && (isSligtlyRight || isSligtlyUp)) {
-            let isSomeEmpty = false;
-            if (isMoreUp && isSligtlyUp && dropY + 1 <= ROWS - puzzle.sizeY) {
-                const {isEmpty: isEmptyDown, placed: placedDown} = 
-                    findPlacedCells(dropX, dropY + 1, puzzle, puzzles.current.placedCells);
-
-                isSomeEmpty = isEmptyDown;
-                placedPuzzles = [...placedDown];
-                if (isSomeEmpty) dropY = dropY + 1;
-            } 
-
-            if ((!isSomeEmpty || !isSligtlyUp) && dropX + 1 <= COLUMNS - puzzle.sizeX) {
-                const {isEmpty: isEmptyRight, placed: placedRight} = 
-                    findPlacedCells(dropX + 1, dropY, puzzle, puzzles.current.placedCells);
-                isSomeEmpty = isEmptyRight;
-                placedPuzzles = [...placedRight];
-                dropX = dropX + 1;
+        if (!isEmpty) {
+            if (isSligtlyRight || isSligtlyUp) {
+                let isSomeEmpty = false;
+                if (isMoreUp && isSligtlyUp && dropY + 1 <= ROWS - puzzle.sizeY) {
+                    const {isEmpty: isEmptyDown, placed: placedDown} = 
+                        findPlacedCells(dropX, dropY + 1, puzzle, puzzles.current.placedCells);
+    
+                    isSomeEmpty = isEmptyDown;
+                    placedPuzzles = [...placedDown];
+                    if (isSomeEmpty) dropY = dropY + 1;
+                } 
+    
+                if ((!isSomeEmpty || !isSligtlyUp) && dropX + 1 <= COLUMNS - puzzle.sizeX) {
+                    const {isEmpty: isEmptyRight, placed: placedRight} = 
+                        findPlacedCells(dropX + 1, dropY, puzzle, puzzles.current.placedCells);
+                    isSomeEmpty = isEmptyRight;
+                    placedPuzzles = [...placedRight];
+                    dropX = dropX + 1;
+                }
+    
+                if (!isSomeEmpty) return;
             }
-
-            if (!isSomeEmpty) return;
+            else return;
         }
 
         if (puzzle.isOnlyPosition && (!puzzle.correctX?.includes(dropX) || !puzzle.correctY?.includes(dropY))) return;
@@ -138,7 +141,7 @@ export const Game1 = () => {
     return (
         <GameWrapper
             level={1} 
-            // isFirstRules
+            isFirstRules
             onDrop={handleReturn}
             onRestart={handleRestart}
             piecesComponent={<PuzzlesWrapper puzzles={emptyPuzzles}/>}

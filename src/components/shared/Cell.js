@@ -1,14 +1,4 @@
-import styled, { keyframes } from 'styled-components';
-
-const colored = keyframes`
-    0% {
-        background-color: #F4F4F4;
-    }
-
-    100% {
-        background-color: #EBF4D1;
-    }
-`;
+import styled from 'styled-components';
 
 export const Cell = styled.div`
     background-color: #F4F4F4;
@@ -17,5 +7,4 @@ export const Cell = styled.div`
     border-bottom: none;
     border-left: none;
     transition: background-color .3s;
-    animation: ${({$isColored}) => $isColored ? colored : ''} 0.3s both;
 `;

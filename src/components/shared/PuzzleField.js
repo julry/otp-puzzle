@@ -1,7 +1,6 @@
 import { useMemo, useRef } from "react";
 import { useDrop } from "react-dnd";
 import styled from "styled-components";
-import { puzzleSize } from "../../constants/sizes";
 import { useSizeRatio } from "../../contexts/SizeRatioContext";
 import { Cell } from "./Cell";
 import { Puzzle } from "./Puzzle";

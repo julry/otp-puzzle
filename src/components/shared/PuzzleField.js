@@ -44,12 +44,14 @@ const PuzzleStyled = styled(Puzzle)`
 export const PuzzleField = ({top, left, width, height, border, cells, onDrop, columns, rows, shownPuzzles}) => {
     const ratio = useSizeRatio();
     const $wrapper = useRef();
-    const cellSizeX = useMemo(() => (width - 2 * ratio * columns)/ columns, [width, columns, ratio]);
+    // const cellSizeX = useMemo(() => (width * ratio - 2 * ratio * columns)/ columns, [width, columns, ratio]);
     const cellSize = useMemo(() => width / columns, [width, columns]);
-    const cellSizeY = useMemo(() => (height - 2 * ratio * rows) / rows, [height, rows, ratio]);
+    // const cellSizeY = useMemo(() => (height * ratio - 2 * ratio * rows) / rows, [height, rows, ratio]);
 
     const handleDrop = (item, monitor) => {
         if (!$wrapper.current) return;
+        const cellSizeX = ($wrapper.current?.getBoundingClientRect().width - 2 * ratio * columns) / columns;
+        const cellSizeY = ($wrapper.current?.getBoundingClientRect().height - 2 * ratio * rows) / rows;
 
         let isSligtlyUp = false;
         let isSligtlyRight = false;

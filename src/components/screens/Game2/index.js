@@ -119,7 +119,7 @@ export const Game2 = () => {
                 ((!correctX || correctX.includes(positionX)) && (!correctY || correctY.includes(positionY)))
             ).length
 
-            if (correctLength === puzzles.current.shownPuzzles.length) setTimeout(() => next(), 100);
+                if (correctLength === puzzles.current.shownPuzzles.length) setTimeout(() => next(), 100);
        }
     }
 

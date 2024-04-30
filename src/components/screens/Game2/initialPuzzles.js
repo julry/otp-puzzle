@@ -28,6 +28,7 @@ export const initialPuzzles = [
         src: puzzle1_2,
         srcStart: puzzle1_2_start,
         line: 1,
+        isOnlyPosition: true,
     },
     {
         id: 2,
@@ -48,6 +49,7 @@ export const initialPuzzles = [
         src: puzzle3_2,
         srcStart: puzzle3_2_start,
         line: 1,
+        isOnlyPosition: true,
     },
     {
         id: 4,
@@ -62,6 +64,7 @@ export const initialPuzzles = [
         puzzRealHeight: 40,
         puzzRealWidth: 46,
         line: 1,
+        isOnlyPosition: true,
     },
     {
         id: 5,
@@ -76,6 +79,7 @@ export const initialPuzzles = [
         puzzRealHeight: 40,
         puzzRealWidth: 46,
         line: 1,
+        isOnlyPosition: true,
     },
     {
         id: 6,

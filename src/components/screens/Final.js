@@ -66,6 +66,8 @@ const Input = styled.input`
 
 const ShiningStyled = styled(Shining)`
     top: 60%;
+    width: 0;
+    height: 0;
     box-shadow: 0 0 100px min(30vw, 130px) rgba(173,121,214, 0.3);
 `;
 
@@ -155,6 +157,22 @@ const Link = styled.a`
   color: inherit;
 `;
 
+const SendBlock = styled.div`
+    position: relative;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    opacity: 0.5;
+    justify-content: center;
+    margin-top: ${({$ratio}) => $ratio * 48}px;
+
+    & svg {
+        width: ${({$ratio}) => $ratio * 32}px;
+        height: ${({$ratio}) => $ratio * 32}px;
+        margin-left: ${({$ratio}) => $ratio * 10}px;
+    }
+`;
+
 export const Final = () => {
     const ratio = useSizeRatio();
     const [email, setEmail] = useState('');
@@ -215,44 +233,58 @@ export const Final = () => {
                 <p>
                     Оставляй почту для участия в розыгрыше крутых призов от ОТП Банка:
                 </p>
-                <EmailWrapper $ratio={ratio}>
-                    <Input 
-                        placeholder="example@example.ru"
-                        $ratio={ratio} 
-                        value={email} 
-                        onChange={handleChange}
-                        onBlur={handleBlur}
-                    />
-                    <SendBtn 
-                        $ratio={ratio} 
-                        onClick={handleSubmit}
-                        disabled={!isAgreed || !email || !isCorrect || isSend || isSending}
-                    >
-                        <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24.0018 8.0035L17.2608 1.26251L15.2531 3.27015L21.9941 10.0112L24.0018 8.0035ZM17.2608 16.7375L24.0018 9.9965L21.9941 7.98885L15.2531 14.7298L17.2608 16.7375ZM1.82976 10.4215L22.9906 10.4215V7.57853L1.82976 7.57853V10.4215ZM17.2608 1.26251L16.2496 0.251358L14.242 2.259L15.2531 3.27015L17.2608 1.26251ZM15.2531 14.7298L14.242 15.741L16.2643 17.7633L17.2754 16.7521L15.2531 14.7298ZM23.0053 9L24.0164 10.0111C24.5733 9.45429 24.5733 8.54571 24.0164 7.98885L23.0053 9ZM1.82976 7.57853H0.393639V10.4215H1.82976V7.57853Z" fill="#342D39"/>
-                        </svg>
-                    </SendBtn>
-                </EmailWrapper>
-                <RadioButtonLabel $ratio={ratio}>
-                        <InputRadioButton
-                            $ratio={ratio}
-                            type="checkbox"
-                            value={isAgreed}
-                            checked={isAgreed}
-                            onChange={() => setIsAgreed((prevAgreed) => !prevAgreed)}
-                        />
-                        <RadioIconStyled $ratio={ratio}/>
-                        <span>
-                            Я согласен(а) на{"\u00A0"}
-                            <Link
-                            href={"https://fut.ru/personal_data_policy/"}
-                            target="_blank"
-                            >
-                            обработку персональных данных
-                            </Link>{" "}
-                            и получение информационных сообщений
-                        </span>
-                    </RadioButtonLabel>
+                {
+                    isSend ? (
+                        <SendBlock $ratio={ratio}>
+                            <p>Почта отправлена</p>
+                            <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <circle cx="16" cy="16" r="16" fill="#C1FF05"/>
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M21.9975 9.6185C22.5914 8.89575 23.6587 8.79129 24.3815 9.38519C25.1043 9.9791 25.2087 11.0465 24.6148 11.7692L16.5553 21.5773C16.4926 21.6537 16.4245 21.7232 16.3521 21.7857C16.271 21.9572 16.1596 22.1179 16.0178 22.2597C15.3563 22.9212 14.2839 22.9212 13.6224 22.2597L7.49619 16.1335C6.83471 15.472 6.83471 14.3995 7.49619 13.738C8.15766 13.0766 9.23012 13.0766 9.8916 13.738L14.6787 18.5252L21.9975 9.6185Z" fill="#342D39"/>
+                            </svg>
+                        </SendBlock>
+                    ) : (
+                        <>
+                            <EmailWrapper $ratio={ratio}>
+                                <Input 
+                                    placeholder="example@example.ru"
+                                    $ratio={ratio} 
+                                    value={email} 
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                />
+                                <SendBtn 
+                                    $ratio={ratio} 
+                                    onClick={handleSubmit}
+                                    disabled={!isAgreed || !email || !isCorrect || isSend || isSending}
+                                >
+                                    <svg width="25" height="18" viewBox="0 0 25 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M24.0018 8.0035L17.2608 1.26251L15.2531 3.27015L21.9941 10.0112L24.0018 8.0035ZM17.2608 16.7375L24.0018 9.9965L21.9941 7.98885L15.2531 14.7298L17.2608 16.7375ZM1.82976 10.4215L22.9906 10.4215V7.57853L1.82976 7.57853V10.4215ZM17.2608 1.26251L16.2496 0.251358L14.242 2.259L15.2531 3.27015L17.2608 1.26251ZM15.2531 14.7298L14.242 15.741L16.2643 17.7633L17.2754 16.7521L15.2531 14.7298ZM23.0053 9L24.0164 10.0111C24.5733 9.45429 24.5733 8.54571 24.0164 7.98885L23.0053 9ZM1.82976 7.57853H0.393639V10.4215H1.82976V7.57853Z" fill="#342D39"/>
+                                    </svg>
+                                </SendBtn>
+                            </EmailWrapper>
+                            <RadioButtonLabel $ratio={ratio}>
+                                    <InputRadioButton
+                                        $ratio={ratio}
+                                        type="checkbox"
+                                        value={isAgreed}
+                                        checked={isAgreed}
+                                        onChange={() => setIsAgreed((prevAgreed) => !prevAgreed)}
+                                    />
+                                    <RadioIconStyled $ratio={ratio}/>
+                                    <span>
+                                        Я согласен(а) на{"\u00A0"}
+                                        <Link
+                                        href={"https://fut.ru/personal_data_policy/"}
+                                        target="_blank"
+                                        >
+                                        обработку персональных данных
+                                        </Link>{" "}
+                                        и получение информационных сообщений
+                                    </span>
+                                </RadioButtonLabel>
+                        </>
+                    )
+                }
             </DrawWrapper>
             <BlockStyled>
                 <p>

@@ -109,7 +109,8 @@ export const initialPuzzles = [
         src: puzzle7_2,
         srcStart: puzzle7_2_start,
         line: 2,
-        freePlace: {x: 0, y: 1}
+        freePlace: {x: 0, y: 1},
+        availableCells: [{x: 4, y: 2}, {x: 3, y: 3}]
     },
     {
         id: 8,
@@ -117,9 +118,12 @@ export const initialPuzzles = [
         sizeY: 2,
         correctX: [4],
         correctY: [4],
+        puzzWidth: 63,
+        puzzRealWidth: 84,
         src: puzzle8_2,
         srcStart: puzzle8_2_start,
         line: 2,
+        availableCells: [{x: 4, y: 3}, {x: 4, y: 4}]
     },
     {
         id: 9,
@@ -134,6 +138,7 @@ export const initialPuzzles = [
         puzzHeight: 34,
         puzzRealHeight: 40,
         puzzRealWidth: 63,
+        prohibbitedCells: [{x: 4, y: 5}, {x: 4, y: 6}]
     },
 ];
 

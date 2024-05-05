@@ -32,7 +32,7 @@ import puzzle14_3_start from '../../../assets/images/game3/puzzle3_14_start.png'
 import puzzle15_3_start from '../../../assets/images/game3/puzzle3_15_start.png';
 import puzzle16_3_start from '../../../assets/images/game3/puzzle3_16_start.png';
 
-export const initalPuzzles = [
+export const initialPuzzles = [
     {
         id: 1,
         sizeX: 2,

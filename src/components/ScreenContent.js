@@ -1,4 +1,4 @@
-import {useMemo} from "react";
+import {useEffect, useMemo} from "react";
 import {SwitchTransition, CSSTransition} from "react-transition-group";
 import styled from 'styled-components';
 import { preloadImages } from "../constants/screens";
@@ -37,6 +37,14 @@ export function ScreenContent() {
     const {screen} = useProgress()
     const Screen = useMemo(() => screen?.component, [screen]);
     useImagePreloader(preloadImages);
+
+    useEffect(() => {
+        const preventDefault = (e) => e.preventDefault();
+        
+        document.body.addEventListener('touchmove', preventDefault, { passive: false });
+        
+        return () => document.body.removeEventListener('touchmove', preventDefault);
+    }, [])
 
     return Screen && (
         <SwitchTransition mode='out-in'>

@@ -22,11 +22,11 @@ const FieldRectangles = styled.div`
 const CellStyled = styled(Cell)`
     width: 100%;
     height: 100%;
-    ${({$isHovered}) => $isHovered ? "background: #EBF4D1" : ''};
 `;
 
 const DropDump = styled.div`
     --cellSize: ${({$ratio, width, $columns}) => $ratio * width / $columns}px;
+    --cellSizeH: ${({$ratio, height, $rows}) => $ratio * height / $rows}px;
     position: absolute;
     z-index: 10;
     display: flex;
@@ -39,8 +39,10 @@ const DropDump = styled.div`
 
 const PuzzleStyled = styled(Puzzle)`
     position: absolute !important;
-    top: calc(${({top}) => top} * var(--cellSize));
+    top: calc(${({top}) => top} * var(--cellSizeH));
     left: calc(${({left}) => left} * var(--cellSize));
+    ${({width}) => width ? 'width: ' + width : ''};
+    ${({height}) => height ? 'height: ' + height : ''};
 `;
 
 export const PuzzleField = ({top, left, width, height, border, cells, onDrop, columns, rows, shownPuzzles}) => {
@@ -79,70 +81,32 @@ export const PuzzleField = ({top, left, width, height, border, cells, onDrop, co
         onDrop?.(item, dropX, dropY, {isSligtlyRight, isSligtlyUp, isMoreUp});
     };
 
-    const handleGetHovered = (monitor) => {
-        console.log($wrapper.current, monitor);
-        if (!$wrapper.current || !monitor) return;
-        const item = monitor.getItem();
-
-        console.log(item);
-        if (!item) return;
-        const cellSizeX = ($wrapper.current?.getBoundingClientRect().width - 2 * ratio * columns) / columns;
-        const cellSizeY = ($wrapper.current?.getBoundingClientRect().height - 2 * ratio * rows) / rows;
-
-        const y = monitor.getSourceClientOffset()?.y - $wrapper.current?.getBoundingClientRect().y;
-        const x = monitor.getSourceClientOffset()?.x - $wrapper.current?.getBoundingClientRect().x;
-        const difX = x / cellSizeX;
-        const difY = y / cellSizeY;
-
-        let dropX = Math.floor(difX);
-        let dropY = Math.floor(difY);
-
-        if (dropX < 0) dropX = 0;
-        if (dropY < 0) dropY = 0;
-
-        const arrayX = [];
-
-        for (let i = 0; i < item.sizeX * item.sizeY; i++) {
-            let hoveredX = i % item.sizeX;
-            let hoveredY = Math.floor(i / item.sizeX);
-
-            if (!(item?.freePlace?.x === hoveredX && item.freePlace?.y === hoveredY)) {
-                arrayX.push({x: dropX + hoveredX, y: dropY + hoveredY})
-            }
-        }
-
-        return arrayX;
-    }
-
-    const [{ hovered }, drop] = useDrop(() => (
+    const [, drop] = useDrop(() => (
         {
             accept: 'PUZZLE',
-            collect: monitor => ({
-                // hovered: monitor.canDrop && monitor.isOver && handleGetHovered(monitor)
-            }),
             drop: handleDrop,
         }
     ), []);
-
-    const getIsHovered = (index) => {
-        if (!hovered) return;
-        const x = index % columns;
-        const y = Math.floor(index / columns);
-
-        return hovered.find((hovered) => hovered.x === x && hovered.y === y);
-    }
 
     return (
         <>
             <FieldRectangles ref={$wrapper} $ratio={ratio} $rows={rows} $columns={columns} top={top} left={left} width={width} height={height} border={border}>
                 {cells.map((_, index) => (
-                    <CellStyled key={index} $ratio={ratio} $isHovered={getIsHovered(index)}/>
+                    <CellStyled key={index} $ratio={ratio}/>
                 ))}
-                
             </FieldRectangles>
-            <DropDump ref={drop} $ratio={ratio} top={top} left={left} width={width} height={height} $columns={columns}>
+            <DropDump ref={drop} $ratio={ratio} top={top} left={left} width={width} height={height} $columns={columns} $rows={rows}>
                 {shownPuzzles.map((puzzle) => (
-                    <PuzzleStyled key={`shown_${puzzle.id}`} puzzle={puzzle} size={cellSize} sizeH={cellSizeH} top={puzzle.top} left={puzzle.left}/>
+                    <PuzzleStyled 
+                        key={`shown_${puzzle.id}`} 
+                        puzzle={puzzle} 
+                        size={cellSize} 
+                        sizeH={cellSizeH} 
+                        top={puzzle.top} 
+                        left={puzzle.left}
+                        height={puzzle.puzzRealHeight ? '' : `calc((100% * ${puzzle.sizeY}) / ${rows})`}
+                        width={puzzle.puzzRealWidth ? '' : `calc((100% * ${puzzle.sizeX}) / ${columns})`}
+                    />
                 ))}
             </DropDump>
         </>

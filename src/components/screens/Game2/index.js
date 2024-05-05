@@ -51,6 +51,7 @@ export const Game2 = () => {
         if (y + puzzle.sizeY > ROWS) dropY = ROWS - puzzle.sizeY;
         
         if ((dropX === 1 || (dropX === 0 && (dropY === 1 || dropY === 2))) && puzzle.id !== 6) return;
+        if ((([0, 1, 4, 5].includes(dropY) && dropX === 4) || dropX === 0) && puzzle.id === 7) return;
 
         const {isEmpty, placed} = findPlacedCells(dropX, dropY, puzzle, puzzles.current.placedCells);
 
@@ -84,6 +85,10 @@ export const Game2 = () => {
         if (puzzle.isOnlyPosition && (!puzzle.correctX?.includes(dropX) || !puzzle.correctY?.includes(dropY))) {
             return;
         }
+
+        if (puzzle.availableCells && !puzzle.availableCells.find((({x, y}) => x === dropX && y === dropY))) return;
+        
+        if (puzzle.prohibbitedCells && puzzle.prohibbitedCells.find((({x, y}) => x === dropX && y === dropY))) return;
 
         const shownIndex = puzzles.current.shownPuzzles.findIndex(({id}) => id === puzzle.id);
 

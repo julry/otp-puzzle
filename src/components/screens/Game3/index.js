@@ -6,7 +6,7 @@ import { useSizeRatio } from "../../../contexts/SizeRatioContext";
 import { findPlacedCells } from "../../../utils/findPlacedCells";
 import { GameWrapper } from "../../shared/GameWrapper";
 import { PuzzleField } from "../../shared/PuzzleField";
-import { initalPuzzles, initialPlaced } from "./initialPuzzles";
+import { initialPuzzles, initialPlaced } from "./initialPuzzles";
 import { PuzzlesWrapper } from "./PuzzlesWrapper";
 
 const PictureWrapper = styled.div`
@@ -32,7 +32,7 @@ const COLUMNS = 8;
 const cells = Array.from({length: 48});
 
 export const Game3 = () => {
-    const [emptyPuzzles, setEmptyPuzzles] = useState(initalPuzzles);
+    const [emptyPuzzles, setEmptyPuzzles] = useState(initialPuzzles);
     const { next } = useProgress();
     
     const puzzles = useRef({
@@ -114,12 +114,12 @@ export const Game3 = () => {
 
         puzzles.current.placedCells.push(...placedPuzzles);
 
-       if (puzzles.current.placedCells.length === ROWS * COLUMNS) {
+       if (puzzles.current.shownPuzzles.length === initialPuzzles.length) {
             const correctLength = puzzles.current.shownPuzzles.filter(({positionY, positionX, correctX, correctY }) => 
                 ((!correctX || correctX.includes(positionX)) && (!correctY || correctY.includes(positionY)))
-            ).length
+            ).length;
 
-                if (correctLength === puzzles.current.shownPuzzles.length) setTimeout(() => next(), 100);
+            if (correctLength === puzzles.current.shownPuzzles.length) setTimeout(() => next(), 100);
        }
     }
 
@@ -145,7 +145,7 @@ export const Game3 = () => {
             placedCells: initialPlaced,
         }
 
-        setEmptyPuzzles(initalPuzzles);
+        setEmptyPuzzles(initialPuzzles);
     }
 
     return (

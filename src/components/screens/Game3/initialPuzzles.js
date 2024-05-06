@@ -44,6 +44,10 @@ export const initialPuzzles = [
         src: puzzle1_3,
         srcStart: puzzle1_3_start,
         isOnlyPosition: true,
+        nearCells: {
+            x: [3, 0],
+            y: [4, 5]
+        }
     },
     {
         id: 2,
@@ -56,6 +60,10 @@ export const initialPuzzles = [
         src: puzzle2_3,
         srcStart: puzzle2_3_start,
         isOnlyPosition: true,
+        nearCells: {
+            x: [3, 2],
+            y: [0, 1]
+        }
     },
     {
         id: 3,
@@ -102,6 +110,10 @@ export const initialPuzzles = [
         srcStart: puzzle6_3_start,
         freePlace: {x: 1, y: 0},
         isOnlyPosition: true,
+        nearCells: {
+            x: [0, 1],
+            y: [0, 1]
+        }
     },
     {
         id: 7,
@@ -147,6 +159,10 @@ export const initialPuzzles = [
         src: puzzle10_3,
         srcStart: puzzle10_3_start,
         isOnlyPosition: true,
+        nearCells: {
+            x: [5, 6],
+            y: [3, 4]
+        }
     },
     {
         id: 11,
@@ -158,7 +174,11 @@ export const initialPuzzles = [
         startTop: 127,
         src: puzzle11_3,
         srcStart: puzzle11_3_start,
-        isOnlyPosition: true
+        isOnlyPosition: true,
+        nearCells: {
+            x: [4, 7, 3, 5],
+            y: [0, 1, 2]
+        }
     },
     {
         id: 12,
@@ -183,6 +203,10 @@ export const initialPuzzles = [
         src: puzzle13_3,
         srcStart: puzzle13_3_start,
         isOnlyPosition: true,
+        nearCells: {
+            x: [1, 6, 0, 2, 7, 5],
+            y: [0, 1]
+        }
     },
     {
         id: 14,
@@ -195,6 +219,10 @@ export const initialPuzzles = [
         src: puzzle14_3,
         srcStart: puzzle14_3_start,
         isOnlyPosition: true,
+        nearCells: {
+            x: [1, 6, 0, 2, 7, 5],
+            y: [0, 1]
+        }
     },
     {
         id: 15,
@@ -218,7 +246,11 @@ export const initialPuzzles = [
         startTop: 127,
         src: puzzle16_3,
         srcStart: puzzle16_3_start,
-        isOnlyPosition: true
+        isOnlyPosition: true,
+        nearCells: {
+            x: [4, 7, 5, 6],
+            y: [0, 1, 2]
+        }
     },
 ];
 

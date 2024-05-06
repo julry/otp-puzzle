@@ -19,6 +19,7 @@ const PuzzleStyled = styled(Puzzle)`
     position: absolute;
     top: ${({top, $ratio}) => top * $ratio}px;
     left: ${({left, $ratio}) => left * $ratio}px;
+    z-index: 0;
 `;
 
 export const PuzzlesWrapper = ({puzzles}) => {

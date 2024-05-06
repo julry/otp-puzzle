@@ -50,6 +50,22 @@ export const Game3 = () => {
         if (x + puzzle.sizeX > COLUMNS) dropX = COLUMNS - puzzle.sizeX;
         if (y + puzzle.sizeY > ROWS) dropY = ROWS - puzzle.sizeY;
         
+        if (dropX === 0 && dropY === 0 && puzzle.id === 13) {
+            dropX = 1;
+        }
+
+        if (
+            puzzle.isOnlyPosition && puzzle.nearCells && 
+            puzzle.nearCells.x.includes(dropX) && puzzle.nearCells.y.includes(dropY)
+        ) {
+            if (puzzle.correctX.length && Math.abs(dropX - puzzle.correctX[0]) > 1 > 0) {
+                dropX = puzzle.correctX[1];
+            } else  dropX = puzzle.correctX[0];
+            if (puzzle.correctX.length > 0 && Math.abs(dropY - puzzle.correctY[0]) > 1) {
+                dropY = puzzle.correctY[1];
+            } else dropY = puzzle.correctY[0];
+        }
+        
         if (dropX === 2 && dropY === 0 && puzzle.id !== 2) return;
 
         const {isEmpty, placed} = findPlacedCells(dropX, dropY, puzzle, puzzles.current.placedCells);

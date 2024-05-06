@@ -138,7 +138,7 @@ export const initialPuzzles = [
         puzzHeight: 34,
         puzzRealHeight: 40,
         puzzRealWidth: 63,
-        prohibbitedCells: [{x: 4, y: 5}, {x: 4, y: 6}]
+        prohibbitedCells: [{x: 4, y: 0}, {x: 4, y: 5}, {x: 4, y: 6}]
     },
 ];
 

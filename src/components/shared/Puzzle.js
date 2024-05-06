@@ -80,7 +80,7 @@ export const Puzzle = ({ className, puzzle, size, sizeH, isStartPuzzle}) => {
 
     return (
         <PuzzleWrapper 
-            ref={mergeRefs($puzzle, drag)} 
+            ref={mergeRefs($puzzle, isStartPuzzle && img === undefined ? null : drag)} 
             className={className}
             $ratio={ratio}  
             width={shownWidth} 

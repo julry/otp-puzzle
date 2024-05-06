@@ -30,6 +30,7 @@ const Picture = styled.img`
 const COLUMNS = 8;
 const ROWS = 7;
 const cells = Array.from({length: COLUMNS * ROWS});
+const places6 = [1, 2, 3, 4];
 
 export const Game2 = () => {
     const [emptyPuzzles, setEmptyPuzzles] = useState(initialPuzzles);
@@ -53,6 +54,11 @@ export const Game2 = () => {
         if ((dropX === 1 || (dropX === 0 && (dropY === 1 || dropY === 2))) && puzzle.id !== 6) return;
         if ((([0, 1, 4, 5].includes(dropY) && dropX === 4) || dropX === 0) && puzzle.id === 7) return;
 
+        if (puzzle.id === 6 && (dropX === 0 || dropX === 1 && places6.includes(dropY))) {
+            dropX = puzzle.correctX[0];
+            dropY = puzzle.correctX[0];
+        }
+        
         const {isEmpty, placed} = findPlacedCells(dropX, dropY, puzzle, puzzles.current.placedCells);
 
         if (isEmpty) {

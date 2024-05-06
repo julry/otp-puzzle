@@ -49,10 +49,6 @@ export const Game3 = () => {
 
         if (x + puzzle.sizeX > COLUMNS) dropX = COLUMNS - puzzle.sizeX;
         if (y + puzzle.sizeY > ROWS) dropY = ROWS - puzzle.sizeY;
-        
-        if (dropX === 0 && dropY === 0 && puzzle.id === 13) {
-            dropX = 1;
-        }
 
         if (
             puzzle.isOnlyPosition && puzzle.nearCells && 

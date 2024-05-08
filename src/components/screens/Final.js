@@ -222,6 +222,10 @@ export const Final = () => {
             });
       };
 
+    const openUrl = (url) => () => {
+        window.open(url, "_blank");
+    };
+
     return (
         <Wrapper $ratio={ratio}>
             <Logo src={logo} alt={""} $ratio={ratio}/>
@@ -292,8 +296,19 @@ export const Final = () => {
                     Выбирай <b>программу{'\n'}стажировок или идеальную вакансию</b> на сайте ОТП Банка 
                     и продолжай своё карьерное путешествие!
                 </p>
-                <ButtonStyled $ratio={ratio}>На стажировку</ButtonStyled>
-                <ButtonStyled type="secondary" $ratio={ratio}>К вакансиям</ButtonStyled>
+                <ButtonStyled 
+                    $ratio={ratio} 
+                    onClick={openUrl('https://www.otpbank.ru/internship/?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday')}
+                >
+                    На стажировку
+                </ButtonStyled>
+                <ButtonStyled 
+                    type="secondary" 
+                    $ratio={ratio}
+                    onClick={openUrl('https://hh.ru/employer/4394?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday')}
+                >
+                    К вакансиям
+                </ButtonStyled>
             </BlockStyled>
         </Wrapper>
     )

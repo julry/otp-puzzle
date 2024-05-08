@@ -55,7 +55,7 @@ export const Game2 = () => {
         if ((([0, 1, 4, 5].includes(dropY) && dropX === 4) || dropX === 0) && puzzle.id === 7) return;
 
 
-        if (puzzle.id === 6 && (dropX === 0 || dropX === 1 && places6.includes(dropY))) {
+        if (puzzle.id === 6 && ((dropX === 0 || dropX === 1) && places6.includes(dropY))) {
             dropX = puzzle.correctX[0];
             dropY = puzzle.correctY[0];
         }

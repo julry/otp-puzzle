@@ -29,8 +29,8 @@ const Content = styled.div`
     padding: 0 ${({$ratio}) => $ratio * 20}px;
     width: 100%;
     
-    @media screen and (max-height: 700px) {
-        margin-top: ${({$ratio}) => $ratio * -45}px;
+    @media screen and (max-height: 750px) {
+        margin-top: ${({$ratio}) => $ratio * -50}px;
     }
 `;
 
@@ -59,10 +59,6 @@ const BlockStyled = styled(Block)`
 
     & p {
         max-width: ${({$ratio}) => $ratio * 282}px;
-    }
-
-    @media screen and (max-height: 750px) {
-        padding-bottom: ${({$ratio}) => $ratio * 20}px;
     }
 `;
 

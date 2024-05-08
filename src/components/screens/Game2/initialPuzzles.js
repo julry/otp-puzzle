@@ -119,7 +119,7 @@ export const initialPuzzles = [
         correctX: [4],
         correctY: [4],
         puzzWidth: 63,
-        puzzRealWidth: 84,
+        puzzRealWidth: 82,
         src: puzzle8_2,
         srcStart: puzzle8_2_start,
         line: 2,

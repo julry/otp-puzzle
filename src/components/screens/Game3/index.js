@@ -62,7 +62,8 @@ export const Game3 = () => {
             } else dropY = puzzle.correctY[0];
         }
         
-        if (dropX === 2 && dropY === 0 && puzzle.id !== 2) return;
+        if (dropX === 2 && dropY === 0 && puzzle.id !== 7) return;
+        if (dropX === 5 && dropY === 0 && puzzle.id !== 5) return;
 
         const {isEmpty, placed} = findPlacedCells(dropX, dropY, puzzle, puzzles.current.placedCells);
 

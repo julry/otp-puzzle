@@ -11,7 +11,7 @@ import casePic from '../assets/images/case.png';
 import helpHand from '../assets/images/helpHand.png';
 import photo from '../assets/images/photo.png';
 import plane from '../assets/images/plane.png';
-import caseStart from '../assets/images/caseStart.svg';
+import caseStart from '../assets/images/caseStart.png';
 import info from '../assets/images/info.svg';
 import photoStart from '../assets/images/photoStart.svg';
 import planeStart from '../assets/images/planeStart.svg';

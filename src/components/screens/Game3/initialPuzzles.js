@@ -36,6 +36,7 @@ export const initialPuzzles = [
         startTop: 0,
         src: puzzle1_3,
         srcStart: puzzle1_3_start,
+        puzzRealHeight: 81,
         isOnlyPosition: true,
         nearCells: {
             x: [1, 0, 2],

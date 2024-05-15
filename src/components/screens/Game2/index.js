@@ -14,8 +14,8 @@ const PictureWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({$ratio}) => $ratio * 345}px;
-    height: ${({$ratio}) => $ratio * 299}px;
+    width: ${({$ratio}) => $ratio * 344}px;
+    height: ${({$ratio}) => $ratio * 302}px;
     margin: 0 auto;
     overflow: hidden;
 `;
@@ -170,11 +170,11 @@ export const Game2 = () => {
                 <Picture src={plane} alt={""} $ratio={ratio}/>
                 <PuzzleField 
                     cells={cells} 
-                    top={8} 
-                    width={320} 
+                    top={9} 
+                    width={322} 
                     left={7} 
                     border={18} 
-                    height={281} 
+                    height={282} 
                     columns={COLUMNS} 
                     rows={ROWS}
                     onDrop={handleDrop}

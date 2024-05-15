@@ -14,8 +14,8 @@ const PictureWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    width: ${({$ratio}) => $ratio * 345}px;
-    height: ${({$ratio}) => $ratio * 299}px;
+    width: ${({$ratio}) => $ratio * 341}px;
+    height: ${({$ratio}) => $ratio * 286}px;
     margin: 0 auto;
     overflow: hidden;
 `;
@@ -95,7 +95,9 @@ export const Game3 = () => {
         } 
 
         if (puzzle.isOnlyPosition && (!puzzle.correctX?.includes(dropX) || !puzzle.correctY?.includes(dropY))) {
-            return;
+            if ((puzzle.id === 6 && !(dropY === 1 && dropX === 7))) return;
+            if ((puzzle.id === 4 && !(dropY === 0 && dropX === 4))) return;
+            if (puzzle.id !== 6 && puzzle.id !== 4) return;
         }
 
         const shownIndex = puzzles.current.shownPuzzles.findIndex(({id}) => id === puzzle.id);
@@ -172,11 +174,11 @@ export const Game3 = () => {
                 <Picture src={photo} alt={""} $ratio={ratio}/>
                 <PuzzleField 
                     cells={cells} 
-                    top={37} 
-                    width={325} 
-                    left={10} 
+                    top={32.5} 
+                    width={324} 
+                    left={9} 
                     border={15} 
-                    height={247} 
+                    height={242} 
                     columns={COLUMNS} 
                     rows={ROWS}
                     onDrop={handleDrop}

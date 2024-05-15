@@ -3,6 +3,7 @@ import styled from "styled-components";
 import logo from "../../assets/images/logo.svg";
 import { FORM_URL, EMAIL_ID } from "../../constants/form";
 import { useSizeRatio } from "../../contexts/SizeRatioContext";
+import { reachMetrikaGoal } from "../../utils/reachMetrikaGoal";
 import { Block } from "../shared/Block";
 import { Button } from "../shared/Button";
 import { Shining } from "../shared/Shining";
@@ -202,6 +203,7 @@ export const Final = () => {
         if (isSending || isSend) return;
         setIsSending(true);
         const formData = new FormData();
+        reachMetrikaGoal('contacts');
     
         formData.append(EMAIL_ID, email);
     
@@ -225,6 +227,16 @@ export const Final = () => {
     const openUrl = (url) => () => {
         window.open(url, "_blank");
     };
+
+    const handleOpenIntern = () => {
+        reachMetrikaGoal('trainee');
+        openUrl('https://www.otpbank.ru/internship/?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday');
+    }
+
+    const handleOpenJob = () => {
+        reachMetrikaGoal('job');
+        openUrl('https://hh.ru/employer/4394?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday');
+    }
 
     return (
         <Wrapper $ratio={ratio}>
@@ -298,14 +310,14 @@ export const Final = () => {
                 </p>
                 <ButtonStyled 
                     $ratio={ratio} 
-                    onClick={openUrl('https://www.otpbank.ru/internship/?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday')}
+                    onClick={handleOpenIntern}
                 >
                     На стажировку
                 </ButtonStyled>
                 <ButtonStyled 
                     type="secondary" 
                     $ratio={ratio}
-                    onClick={openUrl('https://hh.ru/employer/4394?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday')}
+                    onClick={handleOpenJob}
                 >
                     К вакансиям
                 </ButtonStyled>

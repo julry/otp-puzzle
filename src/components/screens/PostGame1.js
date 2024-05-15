@@ -31,6 +31,7 @@ export const PostGame1 = () => {
                 его опытом работы {' '}
                 над важными проектами!
             </p>}
+            metrika="firstlevel"
         >
             <PictureWrapper $ratio={ratio}>
                 <Shining />

@@ -35,6 +35,7 @@ export const PostGame2 = () => {
                 то сможешь перейти в штат{' '}уже через 2-3 месяца — ещё{' '}
                 до <CrossedText>приземления</CrossedText> окончания{' '}стажировки!
             </p>}
+            metrika="secondlevel"
         >
             <PictureWrapper $ratio={ratio}>
                 <Shining />

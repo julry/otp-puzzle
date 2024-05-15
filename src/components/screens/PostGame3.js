@@ -32,6 +32,7 @@ export const PostGame3 = () => {
                 играем в настолки, посещаем выставки и мастер-классы, вместе занимаемся спортом и киберспортом!
             </p>}
             btnText="Готово"
+            metrika="finish"
         >
             <PictureWrapper $ratio={ratio}>
                 <Shining />

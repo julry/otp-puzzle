@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import gsap from "gsap";
+import { useRef } from 'react';
 import { useGSAP } from "@gsap/react";
 import { useSizeRatio } from '../../contexts/SizeRatioContext';
 import info from '../../assets/images/info.svg';
@@ -13,9 +14,9 @@ import puzzle6_1 from '../../assets/images/game1/puzzle1_6_start.png';
 import puzzle7_1 from '../../assets/images/game1/puzzle1_7_start.png';
 import puzzle8_1 from '../../assets/images/game1/puzzle1_8_start.png';
 import helpHand from '../../assets/images/helpHand.png';
+import { reachMetrikaGoal } from '../../utils/reachMetrikaGoal';
 
 import { Block } from './Block';
-import { useRef } from 'react';
 import { Button } from './Button';
 import { Cell } from './Cell';
 import { PuzzleRow } from './PuzzleRow';
@@ -127,14 +128,7 @@ export const Rules = ({onClose, isFirstRules}) => {
         const y = block?.current.getBoundingClientRect().y - element?.current.getBoundingClientRect().y + 2 * ratio;
         const x = block?.current.getBoundingClientRect().x - element?.current.getBoundingClientRect().x + 2 * size;
         const tl = gsap.timeline({repeat: -1, repeatDelay: 1.8});
-        const tl1 = gsap.timeline({repeat: -1, repeatDelay: 1.8});
         const tl2 = gsap.timeline({repeat: -1, repeatDelay: 1.8});
-
-        // tl1.to(".colored", {
-        //     background: '#EBF4D1',
-        //     delay: 0.7,
-        //     duration: 1.2,
-        // }); 
 
         tl.to(".box", {
             y,
@@ -152,6 +146,10 @@ export const Rules = ({onClose, isFirstRules}) => {
         
     }, {}); 
 
+    const handleClose = () => {
+        if (isFirstRules) reachMetrikaGoal('training');
+        onClose();
+    }
 
     return (
         <Wrapper>
@@ -190,7 +188,7 @@ export const Rules = ({onClose, isFirstRules}) => {
                         </PuzzleBlock>
                     </Row>
                 </Blocks>
-                <Button onClick={onClose}>{isFirstRules ? 'Старт' : 'Продолжить'}</Button>
+                <Button onClick={handleClose}>{isFirstRules ? 'Старт' : 'Продолжить'}</Button>
             </Content>
         </Wrapper>
     )

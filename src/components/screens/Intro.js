@@ -3,6 +3,7 @@ import logo from "../../assets/images/logo.svg";
 import start from "../../assets/images/startPic.png";
 import globe from "../../assets/images/globe.png";
 import glasses from "../../assets/images/glasses.png";
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 import { useProgress } from "../../contexts/ProgressContext";
 import { useSizeRatio } from "../../contexts/SizeRatioContext";
 import { Block } from "../shared/Block";
@@ -99,6 +100,8 @@ export const Intro = () => {
     const {next} = useProgress();
 
     const handleNext = () => {
+        reachMetrikaGoal('start');
+        window._tmr?.push({ type: 'reachGoal', id: 3513386, goal: 'start'});
         next();
     }
 

@@ -224,18 +224,14 @@ export const Final = () => {
             });
       };
 
-    const openUrl = (url) => () => {
-        window.open(url, "_blank");
-    };
-
     const handleOpenIntern = () => {
         reachMetrikaGoal('trainee');
-        openUrl('https://www.otpbank.ru/internship/?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday');
+        window.open('https://www.otpbank.ru/internship/?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday', "_blank");
     }
 
     const handleOpenJob = () => {
         reachMetrikaGoal('job');
-        openUrl('https://hh.ru/employer/4394?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday');
+        window.open('https://hh.ru/employer/4394?utm_source=fut&utm_medium=game&utm_campaign=game_futuretoday', "_blank");
     }
 
     return (
